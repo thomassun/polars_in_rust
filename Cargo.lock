@@ -894,7 +894,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "polars_project"
+name = "polars_in_rust"
 version = "0.1.0"
 dependencies = [
  "polars",
