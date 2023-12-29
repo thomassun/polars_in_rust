@@ -12,22 +12,14 @@ fn main() -> PolarsResult<()> {
         "groups" => &["A","A","B","C","B"],
 
     ]?;
-    let out = df
+    // let expr = col("nrs").sort(Default::default()).head(Some(2));
+    // let mask = df.column("nrs")?.i32()?.gt(2);
+    let df_num = df
         .clone()
         .lazy()
-        .group_by([col("groups")])
-        .agg([
-            sum("nrs"),
-            col("random").count().alias("Count"),
-            col("random")
-                .filter(col("names").is_not_null())
-                .sum()
-                .name()
-                .suffix("_sum"),
-            // col("names").reverse().alias("reversed names"),
-            col("names").alias("reversed names"),
-        ])
+        .select([col("nrs"), col("nrs").gt(2).alias("conditional")])
         .collect()?;
-    println!("{:?}", out);
+    println!("{:?}", df_num);
+    // println!("{:?}", mask);
     Ok(())
 }
