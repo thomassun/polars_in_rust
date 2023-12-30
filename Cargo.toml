@@ -17,6 +17,8 @@ polars = { version = "0.35.4", features = [
   "strings",
   "lazy_regex",
   "streaming",
+  "dynamic_group_by",
+  "concat_str",
 ] }
 polars-core = "0.35.4"
 serde = { version = "1.0.193", features = ["derive", "serde_derive"] }
